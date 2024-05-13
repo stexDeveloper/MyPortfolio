@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.scss";
 
 export default function Header() {
+  const [isScroll, setIsScroll] = useState(false);
+
+  function toggleScroll() {
+    const changeScroll = window.scrollY;
+    changeScroll > 100 ? setIsScroll(true) : setIsScroll(false);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleScroll);
+    return () => {
+      window.removeEventListener("scroll", toggleScroll);
+    };
+  }, []);
+
   return (
     <header>
       <div className="container">
-        <div className="header-wrapper">
+        <div
+          className={isScroll ? "header-wrapper scroll-down" : "header-wrapper"}
+        >
           <nav className="nav-bar">
             <ul>
               <li>

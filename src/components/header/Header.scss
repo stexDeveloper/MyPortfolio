@@ -13,9 +13,14 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1e1f2b;
+    background-color: transparent;
     padding: 1.25rem 1rem;
     box-sizing: border-box;
+  }
+
+  .scroll-down {
+    transition: all 1.5s cubic-bezier(0, 0, 0.2, 1) 0ms;
+    background-color: #1e1f2b;
   }
 
   nav.nav-bar {
@@ -34,6 +39,46 @@ header {
       margin-right: 1rem;
       font-size: 0.75rem;
       color: #f4f4f4;
+      position: relative;
+      padding-bottom: 0.25rem;
+    }
+
+    a::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0.05rem;
+      background-color: #f4f4f4;
+      transition: width 0.3s ease-in-out;
+    }
+
+    a::before {
+      transform: translateX(-50%);
+    }
+
+    li:hover a::before {
+      width: 100%;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      width: 0;
+      height: 0.05rem;
+      background-color: #f4f4f4;
+      transition: width 0.3s ease-in-out;
+    }
+
+    a::after {
+      transform: translateX(50%);
+    }
+
+    li:hover a::after {
+      width: 100%;
     }
   }
 
@@ -60,12 +105,58 @@ header {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+
     button {
       background-color: transparent;
       border: thin solid #f4f4f4;
       border-radius: 1.5rem;
       padding: 0.5rem 1rem;
       color: #f4f4f4;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    button:hover {
+      color: #1e1f2b;
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      width: 110%;
+      height: 300%;
+      background-color: #f4f4f4;
+      transform: rotate(20deg);
+      top: -120%;
+      left: -120%;
+      z-index: -1;
+      animation: button_overlay_clear 0.3s 1;
+    }
+
+    button:hover::before {
+      animation: button_overlay 0.5s 1;
+      top: -120%;
+      left: 0;
+      transition: animation 1s ease-in-out;
+    }
+
+    @keyframes button_overlay_clear {
+      from {
+        left: 0%;
+      }
+      to {
+        left: -120%;
+      }
+    }
+
+    @keyframes button_overlay {
+      from {
+        left: -120%;
+      }
+      to {
+        left: 0%;
+      }
     }
   }
 }
