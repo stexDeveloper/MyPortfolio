@@ -1,7 +1,179 @@
 section {
-  padding: 15rem 0;
+  padding: 5rem 0;
+  height: 100vh;
 }
 
 #hero {
   background-color: #2e2f41;
+  position: relative;
+  z-index: 0;
+  .code-deco {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 5px;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .heading {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    h1 {
+      font-size: 5rem;
+      color: #f4f4f4;
+      text-align: center;
+    }
+  }
+
+  .action-buttons {
+    button {
+      border: thin solid #f4f4f4;
+      background-color: transparent;
+      padding: 1rem 2rem;
+      margin-right: 2rem;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    button.first::before {
+      content: "";
+      position: absolute;
+      width: 110%;
+      height: 300%;
+      background-color: #f4f4f4;
+      transform: rotate(20deg);
+      top: -125%;
+      left: 0%;
+      z-index: -1;
+      animation: button_overlay_clear 0.3s 1;
+    }
+
+    .first:hover {
+      color: #f4f4f4;
+      transition: animation 1s ease-in-out;
+    }
+
+    .first:hover::before {
+      animation: button_overlay 0.5s 1;
+      top: -120%;
+      left: -120%;
+      transition: animation 1s ease-in-out;
+    }
+
+    .second {
+      color: #f4f4f4;
+    }
+
+    .second::before {
+      content: "";
+      position: absolute;
+      width: 110%;
+      height: 300%;
+      background-color: #f4f4f4;
+      transform: rotate(20deg);
+      top: -120%;
+      left: -120%;
+      z-index: 1;
+      animation: button_two_overlay_clear 0.3 1;
+    }
+
+    .second:hover {
+      color: #2e2f41;
+      transition: animatio 1s ease-in-out;
+    }
+
+    button.second:hover::before {
+      animation: button_two_overlay 0.3s 1;
+      top: -120%;
+      left: 0%;
+      transition: animatio 1s ease-in-out;
+    }
+
+    @keyframes button_overlay {
+      from {
+        left: 0%;
+      }
+      to {
+        left: 120%;
+      }
+    }
+
+    @keyframes button_overlay_clear {
+      from {
+        left: 120%;
+      }
+      to {
+        left: 0%;
+      }
+    }
+
+    @keyframes button_two_overlay_clear {
+      from {
+        left: -0%;
+        color: #2e2f41;
+      }
+      to {
+        left: -120%;
+        color: #f4f4f4;
+      }
+    }
+
+    @keyframes button_two_overlay {
+      from {
+        left: -120%;
+        color: #f4f4f4;
+      }
+      to {
+        left: 0%;
+        color: #2e2f41;
+      }
+    }
+  }
+}
+
+#about {
+  background-color: #060918;
+  display: flex;
+  align-items: center;
+  .wrapper {
+    display: flex;
+  }
+
+  .illustration,
+  .about-text {
+    flex: 1;
+  }
+
+  .about-text {
+    margin: auto 0;
+    .badge {
+      display: inline-block;
+      border: thin solid #ba68c8;
+      padding: 0.25rem 1rem;
+      background-color: rgba($color: #ba68c8, $alpha: 0.15);
+      color: #ba68c8;
+      border-radius: 1rem;
+    }
+
+    h2,
+    p {
+      color: #f4f4f4;
+    }
+
+    h2 {
+      font-size: 3rem;
+      margin: 0;
+      margin-top: 1rem;
+    }
+  }
 }
